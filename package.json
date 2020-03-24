@@ -1,12 +1,13 @@
 {
-  "name": "nicong's blog",
+  "name": "nicong-blog",
   "private": true,
   "version": "0.0.1",
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "serve": "gatsby serve"
   },
   "dependencies": {
     "gatsby": "^2.19.7",
