@@ -7,7 +7,8 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "clean": "gatsby clean",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "deploy": "rsync -avzP --delete ./public/ root@139.199.128.178:/usr/nicong/blog"
   },
   "dependencies": {
     "gatsby": "^2.19.7",
