@@ -45,7 +45,7 @@ jobs:
       # commit
       - name: commit output
         run: |
-          git checkout -b release origin/release
+          git checkout release
           git pull
           git config --global user.email "liangningcong@gmail.com"
           git config --global user.name "liangningcong"
