@@ -45,8 +45,11 @@ jobs:
       # commit
       - name: commit output
         run: |
+          git remote -v
           git config --global user.email "liangningcong@gmail.com"
           git config --global user.name "liangningcong"
           git add .
           git commit -m 'update'
-          git push -f origin release
+          git checkout -b release origin/release
+          git pull
+          git push origin release
