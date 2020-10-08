@@ -25,15 +25,6 @@ jobs:
         with:
           node-version: '12'
 
-      - name: Git Setup
-        run: |
-          git checkout -b release
-          git config --global user.email "liangningcong@gmail.com"
-          git config --global user.name "liangningcong"
-
-      - name: install dependencies
-        run: npm install
-
       - name: Cache
         uses: actions/cache@v2.1.1
         with:
@@ -42,6 +33,9 @@ jobs:
           # An explicit key for restoring and saving the cache
           key: nicong-blog-node_modules
 
+      - name: install dependencies
+        run: npm install
+
       # build
       - name: build
         run: npm run build
@@ -49,6 +43,10 @@ jobs:
       # commit
       - name: commit output
         run: |
+          git config --global user.email "liangningcong@gmail.com"
+          git config --global user.name "liangningcong"
           git add .
           git commit -m 'update'
+          git checkout -b release
+          git pull origin release
           git push origin release
