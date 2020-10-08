@@ -43,7 +43,7 @@ jobs:
         uses: burnett01/rsync-deployments@4.1
         with:
           switches: -avzP --delete
-          path: yarn.lock
+          path: public/
           remote_path: /usr/nicong/blog
           remote_host: 139.199.128.178
           remote_user: root
