@@ -30,9 +30,9 @@ jobs:
         id: cache
         with:
           # A list of files, directories, and wildcard patterns to cache and restore
-          path: /node_modules
+          path: node_modules
           # An explicit key for restoring and saving the cache
-          key: nicong-blog-node_modules
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
 
       - name: install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
@@ -45,10 +45,8 @@ jobs:
       # commit
       - name: commit output
         run: |
-          git checkout release
-          git pull
           git config --global user.email "liangningcong@gmail.com"
           git config --global user.name "liangningcong"
           git add .
           git commit -m 'update'
-          git push origin release
+          git push -f origin release
