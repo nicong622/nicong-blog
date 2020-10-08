@@ -1,6 +1,6 @@
 ---
-title:利用 Github Actions 来部署静态博客
-date:2020-10-08
+title: 利用 Github Actions 自动部署博客
+date: 2020-10-08
 ---
 
 利用 Github actions ，在每次 push 到 master 之后都自动发布博客内容。
