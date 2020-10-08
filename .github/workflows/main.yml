@@ -45,7 +45,7 @@ jobs:
       # commit
       - name: commit output
         run: |
-          git remote -v
+          git fetch --all
           git config --global user.email "liangningcong@gmail.com"
           git config --global user.name "liangningcong"
           git add .
