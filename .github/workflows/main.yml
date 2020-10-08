@@ -27,6 +27,7 @@ jobs:
 
       - name: Cache
         uses: actions/cache@v2.1.1
+        id: cache
         with:
           # A list of files, directories, and wildcard patterns to cache and restore
           path: /node_modules
@@ -34,6 +35,7 @@ jobs:
           key: nicong-blog-node_modules
 
       - name: install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: npm install
 
       # build
@@ -43,10 +45,10 @@ jobs:
       # commit
       - name: commit output
         run: |
+          git checkout -b release origin/release
+          git pull
           git config --global user.email "liangningcong@gmail.com"
           git config --global user.name "liangningcong"
           git add .
           git commit -m 'update'
-          git checkout -b release
-          git pull origin release
           git push origin release
