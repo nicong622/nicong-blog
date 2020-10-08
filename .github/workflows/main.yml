@@ -19,18 +19,21 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
       - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: '12'
-      
-      - name: Checkout to release
-        run: git checkout -b release
-      
-      - name: install devs
+
+      - name: Git Setup
+        run: |
+          git checkout -b release
+          git config --global user.email "liangningcong@gmail.com"
+          git config --global user.name "liangningcong"
+
+      - name: install dependencies
         run: npm install
-      
+
       - name: Cache
         uses: actions/cache@v2.1.1
         with:
