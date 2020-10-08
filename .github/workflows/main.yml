@@ -20,26 +20,24 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Setup node
-        uses: actions/setup-node@v1
+      # - name: Setup node
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: '12'
+
+      # - name: install dependencies
+      #   run: npm install
+
+      # # build
+      # - name: build
+      #   run: npm run build
+
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@4.1
         with:
-          node-version: '12'
-
-      - name: install dependencies
-        run: npm install
-
-      # build
-      - name: build
-        run: npm run build
-
-      # commit
-      - name: commit output
-        run: |
-          git fetch --all
-          git config --global user.email "liangningcong@gmail.com"
-          git config --global user.name "liangningcong"
-          git add .
-          git commit -m 'update'
-          git checkout -b release origin/release
-          git pull origin release
-          git push origin release
+          switches: -avzP --delete
+          path: yarn.lock
+          remote_path: /usr/nicong/blog
+          remote_host: 139.199.128.178
+          remote_user: root
+          remote_key: ${{ secrets.DEPLOY_KEY }}
